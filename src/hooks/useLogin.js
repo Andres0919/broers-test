@@ -16,7 +16,7 @@ export const useLogin = () => {
     }
 
     successAlert("Bienvenido al sistema")
-    navigate("/")
+    navigate("/pokemon")
   }
 
   const handleCaptchaChange = (value) => {

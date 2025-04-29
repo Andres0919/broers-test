@@ -7,10 +7,18 @@ const { Title } = Typography
 const OFFSET = 0
 
 export default function Home() {
-  const { pokemonList, loading, fetchPokemon, pagination, total, handleTableChange } = usePokemon()
+  const {
+    pokemonList,
+    loading,
+    fetchPokemonList,
+    pagination,
+    total,
+    handleTableChange,
+    handleRowClick,
+  } = usePokemon()
 
   useEffect(() => {
-    fetchPokemon(pagination.current, pagination.pageSize)
+    fetchPokemonList(pagination.current, pagination.pageSize)
   }, [pagination])
 
   const columns = [
@@ -51,9 +59,7 @@ export default function Home() {
       ) : (
         <Table
           onRow={(record) => ({
-            onClick: () => {
-              console.log("Row clicked:", record)
-            },
+            onClick: () => handleRowClick(record),
           })}
           columns={columns}
           dataSource={pokemonList}

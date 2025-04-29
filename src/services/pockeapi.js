@@ -47,9 +47,20 @@ const setupAxios = (config = DEFAULT_API_CONFIG) => {
     }
   }
 
+  const getPokemonById = async (id) => {
+    try {
+      const res = await httpService.get(`pokemon/${id}`)
+      return res.data
+    } catch (error) {
+      console.error("Error fetching Pokémon by ID", error)
+      throw error
+    }
+  }
+
   return {
     getPokemonList,
     getPokemonDetails,
+    getPokemonById,
   }
 }
 
