@@ -1,8 +1,14 @@
 import { Button, Card, Form, Input, Typography, Row, Col, Space } from "antd"
 const { Title, Text } = Typography
-import { LockOutlined, UserOutlined, ReloadOutlined } from "@ant-design/icons"
+import { LockOutlined, UserOutlined } from "@ant-design/icons"
+import ReCAPTCHA from "react-google-recaptcha"
+import { useLogin } from "../hooks/useLogin"
+
+const captchaKey = import.meta.env.VITE_CAPTCHA_KEY
 
 export default function Login() {
+  const { form, onFinish, handleCaptchaChange } = useLogin()
+
   return (
     <Row justify="center" align="middle" style={{ minHeight: "100vh", background: "#f0f2f5" }}>
       <Col xs={22} sm={16} md={12} lg={8} xl={6}>
@@ -13,12 +19,7 @@ export default function Login() {
               <Text type="secondary">Por favor, ingresa tus credenciales para continuar.</Text>
             </div>
 
-            <Form
-              name="login"
-              initialValues={{ remember: true }}
-              // onFinish={onFinish}
-              layout="vertical"
-            >
+            <Form form={form} name="login" onFinish={onFinish} layout="vertical">
               <Form.Item
                 name="username"
                 label="Usuario"
@@ -34,11 +35,15 @@ export default function Login() {
               >
                 <Input.Password prefix={<LockOutlined />} placeholder="Ingresa contraseña" />
               </Form.Item>
-
               <Form.Item
                 name="captcha"
-                rules={[{ required: true, message: "Please input the captcha!" }]}
-              ></Form.Item>
+                rules={[{ required: true, message: "Por favor valida el captcha" }]}
+                style={{ textAlign: "center" }}
+              >
+                <Row justify="center" align="middle" style={{ marginTop: 16 }}>
+                  <ReCAPTCHA sitekey={captchaKey} onChange={handleCaptchaChange} />
+                </Row>
+              </Form.Item>
 
               <Form.Item>
                 <Button type="primary" htmlType="submit" block size="large">
