@@ -20,7 +20,6 @@ const setupAxios = (config = DEFAULT_API_CONFIG) => {
   const getPokemonList = async (options = { limit: 20, offset: 0 }) => {
     try {
       const res = await httpService.get(`pokemon?limit=${options.limit}&offset=${options.offset}`)
-      console.log("Pokémon list response:", res.data)
       return {
         pokemons: res.data.results,
         total: res.data.count,
