@@ -39,10 +39,10 @@ export default function Detail() {
         </Col>
         <Col xs={24} md={16}>
           <Descriptions title="Información" bordered column={{ xs: 1, md: 2 }} size="small">
-            <Descriptions.Item label="Altura">{pokemon.height}</Descriptions.Item>
-            <Descriptions.Item label="Peso">{pokemon.weight}</Descriptions.Item>
+            <Descriptions.Item label="Altura">{pokemon.height} decímetros</Descriptions.Item>
+            <Descriptions.Item label="Peso">{pokemon.weight} hectogramos</Descriptions.Item>
             <Descriptions.Item label="Experiencia base">
-              {pokemon.base_experience}
+              {pokemon.base_experience} XP
             </Descriptions.Item>
             <Descriptions.Item label="Habilidades">
               {pokemon.abilities.map((a) => a.ability.name).join(", ")}

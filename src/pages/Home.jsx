@@ -35,16 +35,19 @@ export default function Home() {
       title: "Experiencia",
       dataIndex: "experience",
       key: "experience",
+      render: (text) => <strong>{text} XP</strong>,
     },
     {
       title: "Altura",
       dataIndex: "height",
       key: "height",
+      render: (text) => <strong>{text} decímetros</strong>,
     },
     {
       title: "Peso",
       dataIndex: "weight",
       key: "weight",
+      render: (text) => <strong>{text} hectogramos</strong>,
     },
   ]
 
