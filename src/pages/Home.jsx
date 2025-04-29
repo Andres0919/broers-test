@@ -1,21 +1,14 @@
 import { useEffect } from "react"
 import { Table, Card, Typography, Spin } from "antd"
 import { usePokemon } from "../hooks/usePokemon"
+import { useNavigate } from "react-router-dom"
 
 const { Title } = Typography
 
-const OFFSET = 0
-
 export default function Home() {
-  const {
-    pokemonList,
-    loading,
-    fetchPokemonList,
-    pagination,
-    total,
-    handleTableChange,
-    handleRowClick,
-  } = usePokemon()
+  const navigate = useNavigate()
+  const { pokemonList, loading, fetchPokemonList, pagination, total, handleTableChange } =
+    usePokemon()
 
   useEffect(() => {
     fetchPokemonList(pagination.current, pagination.pageSize)
@@ -32,7 +25,11 @@ export default function Home() {
       title: "Nombre",
       dataIndex: "name",
       key: "name",
-      render: (text) => <strong>{text.toUpperCase()}</strong>,
+      render: (text) => (
+        <a onClick={() => navigate(`/pokemon/${text}`)}>
+          <strong>{text.toUpperCase()}</strong>
+        </a>
+      ),
     },
     {
       title: "Experiencia",
@@ -58,9 +55,6 @@ export default function Home() {
         <Spin size="large" />
       ) : (
         <Table
-          onRow={(record) => ({
-            onClick: () => handleRowClick(record),
-          })}
           columns={columns}
           dataSource={pokemonList}
           scroll={{ x: true }}

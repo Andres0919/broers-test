@@ -6,13 +6,13 @@ import { usePokemon } from "../hooks/usePokemon"
 const { Title } = Typography
 
 export default function Detail() {
-  const { id } = useParams()
+  const { name } = useParams()
   const navigate = useNavigate()
-  const { pokemon, getPokemonById, loading } = usePokemon(null)
+  const { pokemon, getPokemonByName, loading } = usePokemon(null)
 
   useEffect(() => {
-    getPokemonById(id)
-  }, [id])
+    getPokemonByName(name)
+  }, [name])
 
   if (loading) {
     return (

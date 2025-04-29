@@ -44,17 +44,10 @@ export const usePokemon = () => {
     })
   }
 
-  const handleRowClick = (record) => {
-    console.log("Row clicked:", record)
-    navigate(`/pokemon/${record.id}`, {
-      state: { pokemon: record },
-    })
-  }
-
-  const getPokemonById = async (id) => {
+  const getPokemonByName = async (name) => {
     try {
       setLoading(true)
-      const pokemon = await api.getPokemonById(id)
+      const pokemon = await api.getPokemonByName(name)
       setPokemon(pokemon)
     } catch (error) {
       console.error("Error fetching Pokémon by ID", error)
@@ -72,7 +65,6 @@ export const usePokemon = () => {
     total,
     pagination,
     handleTableChange,
-    handleRowClick,
-    getPokemonById,
+    getPokemonByName,
   }
 }

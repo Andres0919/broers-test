@@ -47,9 +47,9 @@ const setupAxios = (config = DEFAULT_API_CONFIG) => {
     }
   }
 
-  const getPokemonById = async (id) => {
+  const getPokemonByName = async (name) => {
     try {
-      const res = await httpService.get(`pokemon/${id}`)
+      const res = await httpService.get(`pokemon/${name}`)
       return res.data
     } catch (error) {
       console.error("Error fetching Pokémon by ID", error)
@@ -60,7 +60,7 @@ const setupAxios = (config = DEFAULT_API_CONFIG) => {
   return {
     getPokemonList,
     getPokemonDetails,
-    getPokemonById,
+    getPokemonByName,
   }
 }
 
