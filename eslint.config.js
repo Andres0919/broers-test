@@ -3,6 +3,7 @@ import globals from "globals"
 import reactHooks from "eslint-plugin-react-hooks"
 import reactRefresh from "eslint-plugin-react-refresh"
 import eslintPluginPrettier from "eslint-plugin-prettier"
+import importPlugin from "eslint-plugin-import"
 
 export default [
   { ignores: ["dist"] },
@@ -21,6 +22,7 @@ export default [
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
       "prettier": eslintPluginPrettier,
+      "import": importPlugin,
     },
     rules: {
       ...js.configs.recommended.rules,
